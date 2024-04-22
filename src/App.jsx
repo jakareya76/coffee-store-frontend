@@ -1,7 +1,24 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const App = () => {
   const [coffees, setCoffees] = useState([]);
+
+  const handleDeleteCoffee = async (id) => {
+    const res = await fetch(`http://localhost:5000/delete-coffee/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    if (data.deletedCount > 0) {
+      setCoffees((prevCoffee) => {
+        return prevCoffee.filter((coffee) => {
+          return coffee._id !== id;
+        });
+      });
+    }
+  };
 
   useEffect(() => {
     const getAllCoffee = async () => {
@@ -13,8 +30,6 @@ const App = () => {
 
     getAllCoffee();
   }, []);
-
-  console.log(coffees);
 
   return (
     <div className="container mx-auto">
@@ -36,10 +51,16 @@ const App = () => {
                 <button className="px-10 py-2 text-white bg-blue-500 rounded-lg">
                   View
                 </button>
-                <button className="px-10 py-2 text-white bg-green-500 rounded-lg">
+                <Link
+                  to={`/update-coffee/${coffee._id}`}
+                  className="px-10 py-2 text-white bg-green-500 rounded-lg"
+                >
                   Edit
-                </button>
-                <button className="px-10 py-2 text-white bg-red-500 rounded-lg">
+                </Link>
+                <button
+                  onClick={() => handleDeleteCoffee(coffee._id)}
+                  className="px-10 py-2 text-white bg-red-500 rounded-lg"
+                >
                   Delete
                 </button>
               </div>
