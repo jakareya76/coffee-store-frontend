@@ -89,7 +89,7 @@ const AddCoffeForm = () => {
       <input
         type="submit"
         value="Add Coffee"
-        className="w-full py-3 mx-2 text-white bg-blue-500 rounded cursor-pointer "
+        className="w-full py-3 mx-2 text-white bg-blue-600 rounded cursor-pointer "
       />
     </form>
   );
