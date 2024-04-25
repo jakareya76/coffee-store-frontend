@@ -20,7 +20,7 @@ const SignUp = () => {
 
       const user = { email };
 
-      await fetch("http://localhost:5000/users", {
+      await fetch("https://coffee-store-server-puce-pi.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -33,10 +33,6 @@ const SignUp = () => {
       console.log(error.message);
     }
   };
-
-  if (user) {
-    navigate("/");
-  }
 
   return (
     <div className="min-h-screen hero bg-base-200">

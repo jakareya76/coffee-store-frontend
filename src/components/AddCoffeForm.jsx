@@ -24,13 +24,16 @@ const AddCoffeForm = () => {
       photo,
     };
 
-    const res = await fetch("http://localhost:5000/add-coffee", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newCoffee),
-    });
+    const res = await fetch(
+      "https://coffee-store-server-puce-pi.vercel.app/add-coffee",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newCoffee),
+      }
+    );
 
     const data = await res.json();
 

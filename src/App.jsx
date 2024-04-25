@@ -5,9 +5,12 @@ const App = () => {
   const [coffees, setCoffees] = useState([]);
 
   const handleDeleteCoffee = async (id) => {
-    const res = await fetch(`http://localhost:5000/delete-coffee/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `https://coffee-store-server-puce-pi.vercel.app/delete-coffee/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     const data = await res.json();
 
@@ -22,7 +25,9 @@ const App = () => {
 
   useEffect(() => {
     const getAllCoffee = async () => {
-      const res = await fetch("http://localhost:5000/coffee");
+      const res = await fetch(
+        "https://coffee-store-server-puce-pi.vercel.app/coffee"
+      );
       const data = await res.json();
 
       setCoffees(data);

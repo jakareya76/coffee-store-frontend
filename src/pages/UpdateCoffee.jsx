@@ -29,7 +29,7 @@ const UpdateCoffee = () => {
     };
 
     const res = await fetch(
-      `http://localhost:5000/update-coffee/${coffee._id}`,
+      `https://coffee-store-server-puce-pi.vercel.app/update-coffee/${coffee._id}`,
       {
         method: "PUT",
         headers: {

@@ -6,11 +6,22 @@ const Users = () => {
   const [users, setUsers] = useState(loadedUsers);
 
   const handleDelete = async (id) => {
-    setUsers((prevUsers) => {
-      return prevUsers.filter((user) => {
-        return user._id !== id;
+    const res = await fetch(
+      `https://coffee-store-server-puce-pi.vercel.app/user/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.deletedCount > 0) {
+      setUsers((prevUsers) => {
+        return prevUsers.filter((user) => {
+          return user._id !== id;
+        });
       });
-    });
+    }
   };
 
   console.log(users);
